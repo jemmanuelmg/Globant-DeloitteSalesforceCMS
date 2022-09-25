@@ -1,0 +1,23 @@
+.no-favorites-container {
+    text-align: center;
+}
+
+.favorite-container {
+    font-size: 16px;
+    padding: 20px;
+}
+
+hr {
+    height: 1px;
+    background-color: #86BC26;
+    border: none;
+    margin: 11px !important;
+}
+
+.flexbox-container {
+    display: flex;
+}
+
+.flex-item {
+    margin-right: 10px;
+}

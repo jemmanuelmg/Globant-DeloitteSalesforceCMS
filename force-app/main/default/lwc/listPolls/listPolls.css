@@ -1,0 +1,8 @@
+
+.flexbox-container {
+    display: flex;
+}
+
+.flex-item {
+    margin-right: 10px;
+}

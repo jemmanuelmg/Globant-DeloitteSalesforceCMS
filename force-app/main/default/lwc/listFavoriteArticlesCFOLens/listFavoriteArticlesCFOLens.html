@@ -1,0 +1,53 @@
+<template>
+    
+    <div class="container slds-is-relative">
+        
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </template>
+
+        <template if:true={favoritesExists}>
+
+            <template for:each={articleList} for:item='article'>
+
+                <div class="favorite-container" key={article.id}>
+
+                    <div class="flexbox-container">
+
+                        <div class="flex-item">
+                            <lightning-icon icon-name="utility:bookmark" size="small"></lightning-icon>
+                        </div>
+
+                        <div class="flex-item">
+                            <a data-articleurl={article.url} onclick={navigateToArticle}>{article.title}</a>
+                            <br>
+                            Added on: {article.addedOn}
+                        </div>
+
+                    </div>
+
+                    <hr>
+                </div>
+                
+
+            </template>
+
+        </template>
+
+        <template if:false={favoritesExists}>
+            
+            <div class="no-favorites-container">
+                <lightning-icon icon-name="utility:topic" alternative-text="Error loading form" size="large"></lightning-icon>
+                <br>
+                <div class="slds-text-heading_large">{noFavTitle}</div>
+                <br>
+                <div class="slds-text-heading_small">{noFavMessage}</div>
+                <br>
+                <br>
+            </div>
+
+        </template>
+
+    </div>
+
+</template>

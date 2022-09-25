@@ -1,0 +1,58 @@
+<template>
+    <lightning-card variant="narrow">
+        <div class="slds-is-relative">
+            
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </template>
+
+            <template if:true={pollsExists}>
+                <template for:each={polls} for:item="poll">
+                    <lightning-layout-item key={poll.Id} size="12" class="slds-align_absolute-center">
+                        <lightning-card style="margin-left: 10px; margin-right:10px; min-width: 95%; padding: 10px; margin-top: 5px;margin-bottom: 20px;font-size: 16px;-webkit-box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);-moz-box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);">
+
+                            <div class="flexbox-container">
+
+                                <div class="flex-item">
+                                    <lightning-icon icon-name="utility:metrics" size="small"></lightning-icon>
+                                </div>
+
+                                <div class="flex-item" style="width: 100%;">
+
+                                    <div class="slds-text-align_left" style="color: #15AABF; font-size: 18px">
+                                        {poll.Name}
+                                    </div>
+
+                                    <div style="font-size: 18px">
+                                        Ends: &nbsp; {poll.expiryDate}
+                                    </div>
+
+                                    <div style="margin-bottom:8px"></div>
+                                    
+                                    <a class="slds-button" data-pollid={poll.Id} onclick={navigateToDetails} style="text-decoration:underline; font-size: 18px" >
+                                        See Poll
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </lightning-card>
+                    </lightning-layout-item>
+                </template>
+            </template>
+            <template if:false={pollsExists}>
+                
+                <div style="text-align:center">
+                    <lightning-icon icon-name="utility:metrics" size="large"></lightning-icon>
+                    <br>
+                    <div class="slds-text-heading_large">No polls found.</div>
+                    <br>
+                    <div class="slds-text-heading_small">At the moment there aren't polls available to complete.</div>
+                    <br>
+                    <br>
+                </div>
+
+            </template>
+        </div>
+    </lightning-card>
+</template>

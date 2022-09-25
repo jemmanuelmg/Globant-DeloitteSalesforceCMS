@@ -1,0 +1,30 @@
+.main-container {
+    padding: 15px;
+}
+
+.selector-title {
+    font-size: 16px;
+}
+
+.flexbox-container {
+    display: flex;
+}
+
+.flex-item {
+    margin-right: 10px;
+}
+
+.no-access-msg {
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.font16px {
+    font-size: 16px;
+}

@@ -1,0 +1,23 @@
+<template>
+    <div class="wrapper">
+        <header>{question.text}</header>
+        
+        <div class="poll-area" data-question={question.id}>
+            <template for:each={question.answers} for:item="answer">
+                <div key={answer.elementId}>
+                    <input type="radio" value={answer.id} name="answers" id={answer.elementId} onclick={radioHandler} />
+                    <label for={answer.elementId} class={answer.elementId} onclick={answerHandler} data-id={answer.id} data-question={question.id}>
+                        <div class="row">
+                            <div class="column">
+                                <span class="circle"></span>
+                                <span class="text">{answer.text}</span>
+                            </div>
+                            <span class="percent">{answer.percent} %</span>
+                        </div>
+                        <div class="progress-bar"></div>
+                    </label>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

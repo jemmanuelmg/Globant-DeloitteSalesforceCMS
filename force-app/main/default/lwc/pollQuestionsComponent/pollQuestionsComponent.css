@@ -1,0 +1,24 @@
+.main-container {
+    width: 100%;
+}
+
+.refresh-btn-container {
+    position: sticky !important;
+    left: 100%;
+    top: 40px;
+    width: 50px;
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 2px;
+    cursor: pointer;
+    -webkit-box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.21);
+    -moz-box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.21);
+    box-shadow: -2px 2px 5px 0px rgba(0,0,0,0.21);
+    border-radius: 5px;
+}
+
+.refresh-label {
+    font-size: 12px;
+    color: #86BC26;
+    text-align: center;
+}

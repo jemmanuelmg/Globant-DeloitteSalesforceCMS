@@ -1,0 +1,72 @@
+.share-icons-container {
+    float:left;
+}
+
+.add-favorite-container {
+    float:right;
+}
+
+.clear {
+    clear: both;
+}
+
+.flexbox-container {
+    display: flex;
+}
+
+.flex-item {
+    margin-right: 10px;
+}
+
+.icon-container {
+    border-radius: 20px;
+    font-size: 20px;
+    width: 40px;
+    text-align: center;
+    height: 40px;
+    padding-top: 5px;
+}
+
+.twitter-icon{
+    color: #FFFFFF;
+    background-color: #15AABF;
+}
+
+.linkedin-icon {
+    color: #FFFFFF;
+    background-color: #005E8D;
+}
+
+.soft-shadow:hover {
+    -webkit-box-shadow: -4px 3px 5px 0px rgba(0,0,0,0.31);
+    -moz-box-shadow: -4px 3px 5px 0px rgba(0,0,0,0.31);
+    box-shadow: -4px 3px 5px 0px rgba(0,0,0,0.31);
+}
+
+.rounded {
+    border-radius: 20px;
+}
+
+.add-favorite-container {
+    border: 1.5px solid black;
+    padding: 5px;
+    font-size: 14px;
+    margin-top: 8px;
+    border-radius: 5px;
+}
+
+.add-favorite-container:hover {
+    -webkit-box-shadow: -4px 3px 5px 0px rgba(0,0,0,0.31);
+    -moz-box-shadow: -4px 3px 5px 0px rgba(0,0,0,0.31);
+    box-shadow: -4px 3px 5px 0px rgba(0,0,0,0.31);
+    cursor: pointer;
+}
+
+.add-favorite-container:hover span{
+    text-decoration: underline;
+}
+
+
+.star-icon {
+    color:black;
+}

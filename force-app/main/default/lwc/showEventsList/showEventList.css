@@ -1,0 +1,16 @@
+.flexbox-container {
+    display: flex;
+}
+
+.no-events-msg {
+    font-size: 16px !important;
+    color: #C63934;
+}
+
+.image-container {
+    margin-top: 8px;
+}
+
+.no-events-container {
+    text-align: center !important;
+}

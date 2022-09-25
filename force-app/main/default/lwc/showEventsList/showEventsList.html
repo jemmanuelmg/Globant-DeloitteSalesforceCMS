@@ -1,0 +1,90 @@
+<template>
+    <lightning-tabset>
+        <lightning-tab label="Upcoming Events" class="slds-tabs_default__content slds-show">
+            <lightning-card variant="narrow" icon-name="utility:event">
+                <h1 slot="title">
+                    <b>Upcoming Events</b>
+                </h1>
+                
+                <div>
+
+                    <template if:true={upcomingEventsExists}>
+                        <template for:each={upcomingEvents} for:item="upcomingEvent">
+                            <lightning-layout-item key={upcomingEvent.Id} size="12" class="slds-align_absolute-center">
+                                <lightning-card style="width: 700px;padding: 10px; margin-top: 5px;margin-bottom: 20px;font-size: 16px;-webkit-box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);-moz-box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);" >
+
+                                    <p class="slds-text-align_left" style="color: #00A3E0; font-size: 18px;">{upcomingEvent.Source_Program_Event_Name__c} </p>
+                                    <p class="slds-text-align_left"><b>From:</b> &nbsp; {upcomingEvent.Event_Start_Date__c} &nbsp;&nbsp; <b>To:</b> &nbsp; {upcomingEvent.Event_End_Date__c} </p>
+                                    
+                                    <div class="image-container">
+                                        <lightning-formatted-rich-text value={upcomingEvent.bannerImage} class="event-additional-info"></lightning-formatted-rich-text>
+                                    </div>
+
+                                    <div class="slds-m-top_small slds-m-bottom_medium">
+                                        <button style="margin-right: 6%" class="slds-float_right" slot="actions" data-eventid={upcomingEvent.Id} onclick={navigateToDetails}>See details</button>
+                                    </div>
+                                    
+                                </lightning-card>
+                            </lightning-layout-item>
+                        </template>
+                    </template>
+
+                    <template if:false={upcomingEventsExists}>
+                        <br>
+                        <div class="no-events-container">
+                            <lightning-icon icon-name="utility:topic" alternative-text="Error loading form" size="large"></lightning-icon>
+                            <br>
+                            <div class="slds-text-heading_small">There are no upcoming events available at the moment.</div>
+                            <br>
+                            <br>
+                        </div>
+                    </template>
+
+                </div>
+            </lightning-card>
+        </lightning-tab>
+
+        <lightning-tab label="Past Events" class="slds-tabs_default__content slds-show">
+            <lightning-card variant="narrow" icon-name="utility:event">
+                <h1 slot="title">
+                    <b>Past Events</b>
+                </h1>
+                <div>
+
+                    <template  if:true={pastEventsExists}>
+                        <template for:each={pastEvents} for:item="pastEvent">
+                            <lightning-layout-item key={pastEvent.Id} size="12" class="slds-align_absolute-center">
+                                <lightning-card  style="width: 700px;padding: 10px;margin-top: 5px;margin-bottom: 20px;font-size: 16px;-webkit-box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);-moz-box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);">
+
+                                    <p class="slds-text-align_left" style="color: #00A3E0; font-size: 18px;">{pastEvent.Source_Program_Event_Name__c} </p> 
+                                    <p class="slds-text-align_left"><b>From:</b> &nbsp; {pastEvent.Event_Start_Date__c} &nbsp;&nbsp; <b>To:</b> &nbsp; {pastEvent.Event_End_Date__c}</p>
+                                                
+                                    <div class="image-container">
+                                        <lightning-formatted-rich-text value={pastEvent.bannerImage} class="event-additional-info"></lightning-formatted-rich-text>
+                                    </div>
+                                    
+                                    <div class="slds-m-top_small slds-m-bottom_medium">
+                                        <button style="margin-right: 6%" class="slds-float_right" slot="actions" data-eventid={pastEvent.Id} onclick={navigateToDetails}>See details</button>
+                                    </div>
+
+                                </lightning-card>
+                            </lightning-layout-item>
+                        </template>
+                    </template>
+
+                    <template if:false={pastEventsExists}>
+                        <br>
+                        <div class="no-events-container">
+                            <lightning-icon icon-name="utility:topic" alternative-text="Error loading form" size="large"></lightning-icon>
+                            <br>
+                            <div class="slds-text-heading_small">There are no past events available at the moment.</div>
+                            <br>
+                            <br>
+                        </div>
+                    </template>
+
+                </div>
+            </lightning-card>
+        </lightning-tab>
+    </lightning-tabset>
+</template>

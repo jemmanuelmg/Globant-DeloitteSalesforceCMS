@@ -1,0 +1,118 @@
+.session-container {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    /*font-size: 2 rem;*/
+    /*font-family: Helvetica;*/
+    -webkit-box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);
+    -moz-box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);
+    box-shadow: -1px 4px 7px -1px rgba(128,114,114,0.41);
+
+}
+
+.flexbox-container {
+    display: flex;
+}
+
+.flex-item {
+    margin-right: 10px;
+}
+
+.separator {
+    margin-bottom: 15px;
+}
+
+.session-title{
+    color: #00A3E0;
+    font-size: 16px;
+}
+
+.event-title {
+    color: #00A3E0;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.event-description{
+    font-size: 16px;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+
+.event-dates {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.event-venue {
+    font-size: 16px;
+}
+
+.event-additional-comments {
+    font-size: 16px;
+}
+
+.event-session-header {
+    color: #00A3E0;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.event-banner-img {
+    max-height: 300px;
+    margin-bottom: 5px;
+}
+
+.session-venue {
+    color: black;
+    font-size: 16px;
+}
+
+.information-header {
+    color: #00A3E0;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.invisible {
+    display: none;
+}
+
+lightning-tab {
+    font-size: 16px !important;
+}
+
+.slds-tabs_default__link {
+    font-size: 16px !important;
+}
+
+.invalid-url-message {
+    text-align: center;
+}
+
+.no-info-msg {
+    font-size: 16px;
+    margin: 10px;
+}
+
+.session-details-link {
+    font-size: 16px;
+}
+
+.banner-container {
+    text-align: center !important;
+}
+
+.event-additional-info p{
+    margin: 0px !important;
+}
+
+.event-additional-info img{
+    margin: 0px !important;
+}
+
+.font-16px {
+    font-size: 16px;
+}

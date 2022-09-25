@@ -1,0 +1,49 @@
+<template>
+    
+    <div class="container">
+        <div class="share-icons-container">
+            
+            <div class="flexbox-container">
+                <div class="flex-item soft-shadow rounded">
+                    <a href={twitterShareLink} target="_blank">
+                        <div class="icon-container twitter-icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="flex-item soft-shadow rounded">
+                    <a href={linkedinShareLink} target="_blank">
+                        <div class="icon-container linkedin-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <template if:true={enableFavorites}>
+            <div class="add-favorite-container slds-is-relative" onclick={addOrRemoveFromFavorites}>
+
+                <template if:true={isLoading}>
+                    <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                </template>
+
+                <template if:true={isFavorite}>
+                    <i class="fas fa-bookmark"></i>
+                    &nbsp; &nbsp; <span>{removeFromFavText}</span>
+                </template>
+
+                <template if:false={isFavorite}>
+                    <i class="far fa-bookmark"></i>
+                    &nbsp; &nbsp; <span>{addToFavText}</span>
+                </template>
+
+            </div>
+        </template>
+
+    </div>
+
+    <div class="clear"></div>
+
+</template>

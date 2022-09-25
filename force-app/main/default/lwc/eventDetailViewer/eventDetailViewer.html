@@ -1,0 +1,256 @@
+<template>
+    
+    <div class="container">
+
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+
+        <template if:true={thereAreParameters}>
+
+            <br>
+            <template if:true={thereIsBanner}>
+                <div class="banner-container">
+                    <lightning-formatted-rich-text value={bannerImage} class="event-additional-info"></lightning-formatted-rich-text>
+                </div>
+            </template>
+            <div class="event-title">{eventName}</div>
+            <div class="event-dates"><b>Start date:</b> {eventStartDate} —  <b>End date:</b> {eventEndDate}</div>
+            <div class="event-venue"> {eventVenue}</div>
+
+            <template if:true={hasAdditionalNotice}>
+                <br>
+                <b><div class="event-additional-comments">{additionalNoticeText}</div></b>
+                <br>
+            </template>
+            
+            <!--<div class="event-description">{eventDescription}</div>-->
+
+            <br>
+
+            <lightning-tabset>
+
+                <lightning-tab label="Agenda">
+
+                    <template if:true={thereAreSessions}>
+                    
+                        <br>
+
+                        <lightning-tabset>
+
+                            <template for:each={allSessionsGrouped} for:item="group">
+                                <lightning-tab label={group.groupName} key={group.groupName}>
+                                    <template for:each={group.records} for:item="session">
+
+                                        <div class="session-container" key={session.Id}>
+                                            <div class="flexbox-container">
+                                                <div class="flex-item">
+                                                    <lightning-icon icon-name="utility:event" size="small"></lightning-icon>
+                                                </div>
+                                                <div class="flex-item session-info">
+                                                    <div class="start-end-time-container">
+                                                        {session.Session_Start_Time__c} — {session.Session_End_Time__c} <template if:true={session.hasTimezone}>({session.Session_Time_Zone__c})</template>
+                                                    </div>
+
+                                                    <div class="session-title">
+                                                        <b>{session.Session_Name__c}</b>
+                                                        <template if:true={session.hasVenue}>
+                                                            &nbsp;&nbsp;
+                                                            <span class="session-venue"><i>({session.Session_Venue_test__c})</i></span>
+                                                        </template>
+                                                        &nbsp;&nbsp;
+                                                        <template if:true={session.hasLinkToDetails}>
+                                                            <a href={session.Link_To_Details__c} class="session-details-link">— Details</a>
+                                                        </template>
+                                                    </div>
+
+                                                    <div class="speakers-group">
+                                                        <template for:each={session.speakersGroup} for:item="speaker">
+                                                            {speaker.speakerName}
+                                                            <template if:true={speaker.speakerTitle}>
+                                                                {speaker.speakerTitle}
+                                                            </template>
+                                                            <br key={speaker.speakerName}>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </template>
+                                </lightning-tab>
+                            </template>
+
+                            <lightning-tab label="All Sessions">
+
+                                <template for:each={allSessionsGrouped} for:item="group">
+                                    <template for:each={group.records} for:item="session">
+
+                                        <div class="session-container" key={session.Id}>
+                                            <div class="flexbox-container">
+                                                <div class="flex-item">
+                                                    <lightning-icon icon-name="utility:event" size="small"></lightning-icon>
+                                                </div>
+                                                <div class="flex-item session-info">
+                                                    <div class="start-end-time-container">
+                                                        {session.Session_Date__c}, &nbsp; {session.Session_Start_Time__c} — {session.Session_End_Time__c} <template if:true={session.hasTimezone}>({session.Session_Time_Zone__c})</template>
+                                                    </div>
+
+                                                    <div class="session-title">
+                                                        <b>{session.Session_Name__c}</b>
+                                                        <template if:true={session.hasVenue}>
+                                                            &nbsp;&nbsp;
+                                                            <span class="session-venue"><i>({session.Session_Venue_test__c})</i></span>
+                                                        </template>
+                                                        &nbsp;&nbsp;
+                                                        <template if:true={session.hasLinkToDetails}>
+                                                            <a href={session.Link_To_Details__c} class="session-details-link">— Details</a>
+                                                        </template>
+                                                    </div>
+
+                                                    <div class="speakers-group">
+                                                        <template for:each={session.speakersGroup} for:item="speaker">
+                                                            {speaker.speakerName}
+                                                            <template if:true={speaker.speakerTitle}>
+                                                                {speaker.speakerTitle}
+                                                            </template>
+                                                            <br key={speaker.speakerName}>
+                                                        </template>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </template>
+                                </template>
+
+                            </lightning-tab>
+
+                        </lightning-tabset>
+                    </template>
+
+                    <template if:false={thereAreSessions}>
+                        <div class="no-info-msg"><i>There are no sessions assigned for this event yet.</i></div>
+                    </template>
+
+                </lightning-tab>
+
+                <lightning-tab style="font-size:16px" label="Speakers">
+
+                    <br>
+                    <template if:true={speakersExists}>
+                        <template for:each={speakers} for:item="speakerGroup">
+                            <lightning-accordion class={speakerGroup.accordionSelector} active-section-name="D" data-prevselection="D" key={speakerGroup.Id}>
+
+                                <lightning-accordion-section class="accordion-label" name="A" label={speakerGroup.Label__c} data-parentclass={speakerGroup.accordionSelector} data-secname="A" onclick={handleSectionClick}>
+                                    <lightning-formatted-rich-text value={speakerGroup.Content__c} class="event-additional-info"></lightning-formatted-rich-text>
+                                </lightning-accordion-section>
+                        
+                                <lightning-accordion-section name="D" label="Auxiliar Section D" data-parentclass={speakerGroup.accordionSelector} data-secname="D" onclick={handleSectionClick} class="invisible">
+                                    Auxiliary content
+                                </lightning-accordion-section>
+
+                            </lightning-accordion>
+                        </template>
+                        <br>
+                        <br>
+                    </template>
+                    <template if:false={speakersExists}>
+                        <div class="no-info-msg">
+                            <i>No speakers information registered yet.</i>
+                        </div>
+                    </template>
+
+                </lightning-tab>
+
+                <lightning-tab style="font-size:16px" label="Information">
+
+                    <br>
+                    <template if:true={noAddInformationRegistered}>
+                        <div class="no-info-msg">
+                            <i>No additional information registered yet.</i>
+                        </div>
+                    </template>
+                    
+                    <template if:true={specialAgendasExists}>
+                        <div class="information-header">Special Agendas</div>
+
+                        <template for:each={specialAgendas} for:item="agenda">
+                            <lightning-accordion class={agenda.accordionSelector} active-section-name="D" data-prevselection="D" key={agenda.Id}>
+
+                                <lightning-accordion-section class="accordion-label" name="A" label={agenda.Label__c} data-parentclass={agenda.accordionSelector} data-secname="A" onclick={handleSectionClick}>
+                                    <lightning-formatted-rich-text value={agenda.Content__c} class="event-additional-info"></lightning-formatted-rich-text>
+                                </lightning-accordion-section>
+                        
+                                <lightning-accordion-section name="D" label="Auxiliar Section D" data-parentclass={agenda.accordionSelector} data-secname="D" onclick={handleSectionClick} class="invisible">
+                                    Auxiliary content
+                                </lightning-accordion-section>
+
+                            </lightning-accordion>
+                        </template>
+                        <br>
+                        <br>
+                    </template>
+
+                    <template if:true={attendeesExists}>
+                        <div class="information-header">Attendees</div>
+
+                        <template for:each={attendees} for:item="attendeesInfo">
+                            <lightning-accordion class={attendeesInfo.accordionSelector} active-section-name="D" data-prevselection="D" key={attendeesInfo.Id}>
+
+                                <lightning-accordion-section class="accordion-label" name="A" label={attendeesInfo.Label__c} data-parentclass={attendeesInfo.accordionSelector} data-secname="A" onclick={handleSectionClick}>
+                                    <lightning-formatted-rich-text value={attendeesInfo.Content__c} class="event-additional-info"></lightning-formatted-rich-text>
+                                </lightning-accordion-section>
+                        
+                                <lightning-accordion-section name="D" label="Auxiliar Section D" data-parentclass={attendeesInfo.accordionSelector} data-secname="D" onclick={handleSectionClick} class="invisible">
+                                    Auxiliary content
+                                </lightning-accordion-section>
+
+                            </lightning-accordion>
+                        </template>
+                        <br>
+                        <br>
+                    </template>
+
+                    <template if:true={usefulInformationsExists}>
+                        <div class="information-header">Useful Information</div>
+
+                        <template for:each={usefulInformations} for:item="information">
+                            <lightning-accordion class={information.accordionSelector} active-section-name="D" data-prevselection="D" key={information.Id}>
+
+                                <lightning-accordion-section class="accordion-label" name="A" label={information.Label__c} data-parentclass={information.accordionSelector} data-secname="A" onclick={handleSectionClick}>
+                                    <lightning-formatted-rich-text value={information.Content__c} class="event-additional-info"></lightning-formatted-rich-text>
+                                </lightning-accordion-section>
+                        
+                                <lightning-accordion-section name="D" label="Auxiliar Section D" data-parentclass={information.accordionSelector} data-secname="D" onclick={handleSectionClick} class="invisible">
+                                    Auxiliary content
+                                </lightning-accordion-section>
+
+                            </lightning-accordion>
+                        </template>
+                        <br>
+                        <br>
+                    </template>
+                    
+                </lightning-tab>
+
+            </lightning-tabset>
+        </template>
+
+        <template if:false={thereAreParameters}>
+
+            <div class="invalid-url-message">
+                <br>
+                <br>
+                <lightning-icon icon-name="utility:deprecate" alternative-text="Error loading form" size="large"></lightning-icon>
+                <br>
+                <div class="slds-text-heading_large">There was a problem loading this event</div>
+                <br>
+                <div class="slds-text-heading_small">Please go back to the list of available events and select again the desired event to view.</div>
+                <br>
+                <br>
+            </div>
+
+        </template>
+    </div>
+</template>

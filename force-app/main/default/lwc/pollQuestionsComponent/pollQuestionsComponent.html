@@ -1,0 +1,34 @@
+<template>
+    <div if:true={showPoll}>
+        <div class="main-container slds-is-relative">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </template>
+
+            <div class="refresh-btn-container" onclick={reloadComponent}>
+                <lightning-icon icon-name="utility:refresh" size="small" alternative-text="Warning!" title="Warning"></lightning-icon>
+                <div class="refresh-label">Refresh</div>
+            </div>
+            
+            <div>
+                <template for:each={poll.questions} for:item="question">
+                    <div if:false={question.userVoted} key={question.id}>
+                        <c-poll-question-component
+                            question={question}
+                            record-id={pollId}
+                            key={question.id}
+                            onreloadrequest={reloadComponent}
+                        ></c-poll-question-component>
+                    </div>
+                    <div if:true={question.userVoted} key={question.id}>
+                        <c-poll-results-component
+                            question={question}
+                            record-id={pollId}
+                            key={question.id}
+                        ></c-poll-results-component>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,66 @@
+.btn-custom {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    cursor: pointer;
+    background-color: rgb(134, 188, 38);
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: Lato;
+    font-weight: 700;
+    line-height: 1.42857143;
+    border-radius: 2px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+}
+
+.btn-icon-overlay {
+    position: absolute;
+    z-index: 1;
+    margin: 13px 0 0 0.5rem;
+}
+
+.error-container {
+    color: #C82333;
+}
+
+.error-panel {
+    display: flex;
+    padding: 15px 10px 15px 10px;
+    border: 1px solid #C82333;
+    border-radius: 4px;
+}
+
+.error-message {
+    margin-left: 15px;
+}
+
+.error-icon {
+    margin-left: 15px;
+    fill: #C82333 !important;
+    width: 25px !important;
+    height: 25px !important;
+    display:inline-block;
+}
+
+.input-custom {
+    margin-bottom: 10px;
+    padding: 12px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.font-16px {
+    font-size: 16px !important;
+}

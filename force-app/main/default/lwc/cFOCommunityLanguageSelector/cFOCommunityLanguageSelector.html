@@ -1,0 +1,68 @@
+<template>
+    
+    <div class="main-container slds-is-relative">
+
+        <hr>
+
+        <div class="flexbox-container">
+            <div class="flex-item">
+                <lightning-icon icon-name="utility:quotation_marks" size="small"></lightning-icon>
+            </div>
+            <div class="flex-item selector-title">
+                {componentTitle}
+            </div>
+        </div>
+
+        <template if:true={enableComponent}>
+            <lightning-combobox
+                placeholder={comboLabel2}
+                options={countryOptions}
+                onchange={handleCountryChange}
+                class="country-selector-input">
+            </lightning-combobox>
+
+            <lightning-combobox
+                placeholder={comboLabel}
+                options={languagesAvailable}
+                onchange={openModal}
+                class="language-selector-input">
+            </lightning-combobox>
+        </template>
+
+        <template if:false={enableComponent}>
+            <div class="no-access-msg">
+                <i>{compDisabledText}</i>
+            </div>
+        </template>
+
+        <template if:true={showModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                <div class="slds-modal__container slds-is-relative">
+
+                    <div class="slds-is-relative">
+                        <template if:true={isLoadingModal}>
+                            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                        </template>
+                
+
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <br>
+                            <p class="font16px">{confirmationText}</p>
+                            <br>
+                        </div>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeModal}>{cancelBtnLabel}</button>
+                        <button class="slds-button slds-button_brand" onclick={changeLanguage}>{acceptBtnLabel}</button>
+                    </footer>
+
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <hr>
+
+    </div>
+
+</template>
